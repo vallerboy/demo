@@ -1,10 +1,9 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.LoginForm;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MainController {
@@ -20,6 +19,27 @@ public class MainController {
     public String loginPost(@RequestParam("login") String login,
                             @RequestParam("password") String password){
         if(login.equals("admin") && password.equals("admin")){
+            return "Zalogowano!";
+        }
+        return "Błędne dane!";
+    }
+
+    ////////////////////DRUGI SPOSÓB ///////////////////////////
+
+    @GetMapping("/loginTwo")
+    public String loginTwo(Model model){
+        LoginForm loginForm = new LoginForm();
+        loginForm.setLogin("hehehe!");
+
+        model.addAttribute("loginForm", loginForm);
+        return "loginTemplateModel";
+    }
+
+
+    @PostMapping("/loginTwo")
+    @ResponseBody
+    public String loginPostTwo(@ModelAttribute LoginForm loginForm){
+        if(loginForm.getLogin().equals("admin") && loginForm.getPassword().equals("admin")){
             return "Zalogowano!";
         }
         return "Błędne dane!";

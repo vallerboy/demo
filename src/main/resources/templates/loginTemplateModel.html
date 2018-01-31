@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="@{/loginTwo}" method="post" th:object="${loginForm}">
+         Login: <input type="text" th:field="*{login}"/>  <br/>
+         Hasło: <input type="password" th:field="*{password}"> <br />
+         <input type="submit" value="Wyślij!">
+    </form>
+</body>
+</html>
