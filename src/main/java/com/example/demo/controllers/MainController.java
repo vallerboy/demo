@@ -44,4 +44,11 @@ public class MainController {
         }
         return "Błędne dane!";
     }
+
+    @GetMapping("/sendMeName/{name}/{lastname}")
+    @ResponseBody
+    public String sendMeName(@PathVariable("name") String name,
+                             @PathVariable("lastname") String lastname){
+        return "Twoje imie to: " + name + " " + lastname;
+    }
 }
